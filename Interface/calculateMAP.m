@@ -1,4 +1,26 @@
 function [parametric_map_f, parametric_map_Ddiff, parametric_map_Dperf] = calculateMAP(img, bvalues, slice, fit, outlierList)
+
+%% Parametric maps calculator
+%======================================================================
+%======================================================================
+% Version Control
+%
+% Breno Spinelli Coelho
+%  04/10/2021: ver 1.0
+%
+%======================================================================
+%======================================================================
+% This function receives matrix img with IVIM signals and fit them to
+% obtain IVIM parameters f, D and D*. Whenever it calculates parameters
+% out of outlierList bounds, it sets the parameter to zero.
+% INPUT: img = 2-D double matrix with IVIM signals
+%        bvalues = double array with b-values
+%        slice = double that indicates MR image slice
+%        fit = char that indicates the fitting method
+%        outlierList = double array with parameters tolerances
+% OUTPUT: parametric_map_f = double 2-D matrix --> f parametric map
+%         parametric_map_Ddiff = double 2-D matrix --> D parametric map
+%         parametric_map_Dperf = double 2-D matrix --> D* parametric map
     
     parametric_map_f = zeros(size(img,1),size(img,2));
     parametric_map_Ddiff = parametric_map_f;
@@ -15,7 +37,7 @@ function [parametric_map_f, parametric_map_Ddiff, parametric_map_Dperf] = calcul
     setappdata(h,'canceling',0)
     cancel = false;
 
-    % Voxelwise fitting
+    % Voxel-wise fitting
     for col = 1:size(img,2)
         for row = 1:size(img,1)             % parallel execution of column fitting                               
             Signal = img(row,col,:);           % IVIM signal          

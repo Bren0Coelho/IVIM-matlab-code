@@ -1,5 +1,5 @@
 %% crlb
-%% Formulação retirada de Fundamentals of Statistical Signal Processing -- Estimation Theory p.35
+%% FormulaÃ§Ã£o retirada de Fundamentals of Statistical Signal Processing -- Estimation Theory p.35
 %% Funcao Cramer-Rao Lower Bounds calcula as variancias maximas dos parametros de ruido difusao e perfusao ;
 %% Entrada: b, Signal;
 %% Saida: var_D_perf, var_D_diff, var_f_fit
@@ -23,7 +23,7 @@ sigma_2 = 3e-3;
 %     ln = log(p);
 %     s = (1-f)*exp(-b*D_diff) + f*exp(-b*D_perf);
 %     Signal = awgn(s,40, 'measured');
-%% Escrever os logaritmos da função de probabilidade
+%% Escrever os logaritmos da funÃ§Ã£o de probabilidade
 
 for i = 1:4
     
@@ -49,8 +49,8 @@ for i = 1:4
                 for m = 1:length(f)        
                     
                     dSdf = exp(-b*D_perf(l))-exp(-b*D_diff(k));
-                    dSdDperf = (-b).*f(m).*exp(-b*D_diff(k));
-                    dSdDdiff = (-b).*(1-f(m)).*exp(-b*D_perf(l));
+                    dSdDperf = (-b).*f(m).*exp(-b*D_perf(l));
+                    dSdDdiff = (-b).*(1-f(m)).*exp(-b*D_diff(k));
 
 
                     %% Escrever as derivadas dos logaritmos na matriz de Fisher
